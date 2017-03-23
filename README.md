@@ -8,3 +8,4 @@ To see an example of a Play application using Slick outside of the application l
 
 https://github.com/playframework/play-isolated-slick/
 
+# play-slick-swagger

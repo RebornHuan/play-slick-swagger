@@ -3,9 +3,40 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.PersonController.index
-POST    /person                     controllers.PersonController.addPerson
-GET     /persons                    controllers.PersonController.getPersons
+GET         /                                                          controllers.Application.index
+# 获取商家列表
+GET         /excodes                                                   controllers.ExcodeInfoController.getExcodes
+# 创建商家列表
+POST        /excodes                                                   controllers.ExcodeInfoController.createExcode
+# 获取某个商家信息
+GET         /excodes/:excode                                           controllers.ExcodeInfoController.getExcode(excode: String)
+# 获取某个商家下用户列表
+GET         /excodes/:excode/accounts                                  controllers.ExcodeAccountController.getAccounts(excode: String)
+# 获取某个商家下用户信息
+GET         /excodes/:excode/accounts/:id                              controllers.ExcodeAccountController.getBalance(excode: String,id: String)
+# 绑定接口
+GET         /bind/:excode/:id                                          controllers.ExcodeAccountController.bindAccount(excode: String,id: String)
+# 查看某个商家交易记录
+GET         /history/excodes/:excode                                   controllers.AccountRecordController.getRecordsByExcode(excode: String)
+# 查看某个商家下账户的交易记录
+GET         /history/excodes/:excode/:id                               controllers.AccountRecordController.getRecordsByAccount(excode: String,id: String)
+# 查看中间账号列表
+GET         /mAccounts                                                 controllers.MiddleAccountController.getAccounts
+# 查看某个商家的中间账号
+GET         /mAccounts/:excode                                         controllers.MiddleAccountController.getBalance(excode: String)
+# 为某个商家创建中间账号
+PUT         /mAccounts/:excode                                         controllers.MiddleAccountController.addMAccount(excode: String)
+# 为某个商家中间账号添加金额
+PUT         /mAccounts/:excode/:amount                                 controllers.MiddleAccountController.addBalance(excode: String,amount:Int)
+# 查看中间账号的交易记录
+GET         /history/mAccounts/:excode                                 controllers.MAccountRecordController.getRecordsByExcode(excode: String)
+# 扣减用户账号
+GET         /transferInto/:excode/:accountId/:amount                   controllers.TransferController.transferInto(excode: String,accountId: String,amount:Int)
+# 为用户账号转账
+GET         /transferOut/:excode/:accountId/:amount                    controllers.TransferController.transferOut(excode: String,accountId: String,amount:Int)
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET         /swagger.json                                              controllers.ApiHelpController.getResources
+GET         /docs/                                                     controllers.Assets.at(path="/public/swagger-ui",file="index.html")
+GET         /docs/*file                                                controllers.Assets.at(path="/public/swagger-ui",file)

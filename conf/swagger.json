@@ -1,0 +1,23 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Play Swagger",
+    "contact": {
+      "name": "Mock 商家",
+      "email": "",
+      "url": "localhost:9000"
+    }
+  },
+  "host": "localhost:9000",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json",
+    "application/text"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}
